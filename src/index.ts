@@ -1,5 +1,5 @@
 import express from 'express'
-import scrapeEbayKl from './scraper/ebayKl'
+import { scrapeEbayKl } from './scraper/ebayKl'
 
 const app = express()
 const port = 5000

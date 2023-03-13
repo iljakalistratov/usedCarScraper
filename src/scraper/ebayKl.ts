@@ -1,17 +1,16 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 
-export default scrapeEbayKl;
-
-async function scrapeEbayKl(keyword: string) {
+export async function scrapeEbayKl(keyword: string) {
     const baseUrl = 'https://www.ebay-kleinanzeigen.de';
 //   const searchUrl = `${baseUrl}/s-suchanfrage.html?keywords=${encodeURIComponent(keyword)}&categoryId=${encodeURIComponent(category)}`;
-    const searchUrl = baseUrl + '/s-autos/' + keyword +'/k0c216';
+    // const searchUrl = baseUrl + '/s-autos/' + keyword +'/k0c216';
+    const searchUrl = baseUrl + '/s-autos/c216?keywords=' + keyword;
 
   try {
     const response = await axios.get(searchUrl);
     const html = response.data;
-    const $ = cheerio.load(html);
+    let $ = cheerio.load(html);
 
     const results: any[] = [];
 
@@ -20,6 +19,7 @@ async function scrapeEbayKl(keyword: string) {
       const price = $(element).find('.aditem-main--middle--price-shipping--price').text().trim();
       const link = `${baseUrl}${$(element).find('.ellipsis a').attr('href')}`;
 
+      console.log({ title, price, link })
       results.push({ title, price, link });
     });
 
