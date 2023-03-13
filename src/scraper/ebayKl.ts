@@ -18,15 +18,16 @@ export async function scrapeEbayKl(keyword: string) {
       const title = $(element).find('.ellipsis').text().trim();
       const price = $(element).find('.aditem-main--middle--price-shipping--price').text().trim();
       const link = `${baseUrl}${$(element).find('a.ellipsis').attr('href')}`;
+      const imgSrc = $(element).find('.imagebox').attr('data-imgsrc');
 
       // console.log({ title, price, link })
-      results.push({ title, price, link });
+      results.push({ title, price, link, imgSrc });
     });
 
     console.log(results)
     
     return results;
-    
+
   } catch (error) {
     console.error(error);
     return [];
