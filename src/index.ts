@@ -9,8 +9,9 @@ app.get('/', (_,res) => {
   res.status(200).send("Hello World!")
 })
 
-app.get('/scrapeEbay', async (_,res) => {
-  const results = await scrapeEbayKl('celica');
+app.get('/scrapeEbay/:keyword', async (req,res) => {
+  const keyword = req.params.keyword;
+  const results = await scrapeEbayKl(keyword);
   res.status(200).send(results);
   })
 
