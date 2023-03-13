@@ -10,20 +10,23 @@ export async function scrapeEbayKl(keyword: string) {
   try {
     const response = await axios.get(searchUrl);
     const html = response.data;
-    let $ = cheerio.load(html);
+    const $ = cheerio.load(html);
 
-    const results: any[] = [];
+    let results: any[] = [];
 
     $('.aditem').each((index, element) => {
       const title = $(element).find('.ellipsis').text().trim();
       const price = $(element).find('.aditem-main--middle--price-shipping--price').text().trim();
-      const link = `${baseUrl}${$(element).find('.ellipsis a').attr('href')}`;
+      const link = `${baseUrl}${$(element).find('a.ellipsis').attr('href')}`;
 
-      console.log({ title, price, link })
+      // console.log({ title, price, link })
       results.push({ title, price, link });
     });
 
+    console.log(results)
+    
     return results;
+    
   } catch (error) {
     console.error(error);
     return [];

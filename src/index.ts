@@ -9,8 +9,11 @@ app.get('/', (_,res) => {
   res.status(200).send("Hello World!")
 })
 
-app.get('/scrapeEbay', (_,res) => {
-  res.status(200).send(scrapeEbayKl('celica'))
+app.get('/scrapeEbay', async (_,res) => {
+  const results = await scrapeEbayKl('celica');
+  res.status(200).send(results);
   })
 
 app.listen(port, () => console.log(`Running on port ${port}`))
+
+
