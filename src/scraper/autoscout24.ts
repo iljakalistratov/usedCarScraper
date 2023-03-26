@@ -1,38 +1,51 @@
-import axios from 'axios';
-import cheerio from 'cheerio';
+const puppeteer = require('puppeteer');
 
-export async function scrapeAutoscout24() {
 
-    const baseUrl = 'https://www.autoscout24.de';
-    const searchUrl = baseUrl + `/lst/toyota/celica?atype=C&cy=D&damaged_listing=exclude&desc=1&ocs_listing=include&powertype=kw&search_id=27ose429ogr&sort=age&ustate=N%2CU`;
-    try {
-        const response = await axios.get(searchUrl);
-        const html = response.data;
-        const $ = cheerio.load(html);
+(async() => {
+    const browser = await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+    console.log(await browser.version());
+    const page = await browser.newPage();
+    await page.setViewport({ width: 1280, height: 12000 });
+    await page.goto('https://www.autoscout24.de/lst/toyota/celica?atype=C&cy=D&damaged_listing=exclude&desc=1&ocs_listing=include&powertype=kw&search_id=27ose429ogr&sort=age&ustate=N%2CU')
+    await page.screenshot({path: 'screenshot.png'});
 
-        let results: any[] = [];
+    //get Data
+    const data = await page.evaluate(() => {
+        const results: any[] = [];
 
-        $('.list-page-item').each((index, element) => {
-        // const title = $(element).find('.ListItem_title__znV2I.h2').text().trim();
-        const title1 = $(element).find('a.ListItem_title__znV2I h2').text().trim();
-        const title2 = " " + $(element).find('span.ListItem_version__jNjur').text().trim();
-        const title = title1 + title2;
-        const price = $(element).find('.Price_price__WZayw').text().trim();
-        const link = $(element).find('ListItem_title__znV2I').attr('href');
-        const km = $(element).find('.span.VehicleDetailTable_item__koEV4').eq(0).text();
-        const year = $(element).find('.span.VehicleDetailTable_item__koEV4').eq(1).text();
-        const imgSrc = $(element).find('.NewGallery_img__bi92g').attr('src');
+        const carList = document.querySelectorAll('.list-page-item');
 
-        // console.log({ title, price, link })
-        results.push({title , price, km, year, link, imgSrc });
-        });
+        return Array.from(carList).map((car) => {
+            const title1 = (car.querySelector('a.ListItem_title__znV2I h2') as HTMLElement)?.innerText;
+            const title2 = " " + (car.querySelector('span.ListItem_version__jNjur') as HTMLElement)?.innerText;
+            const title = title1 + title2;
+            const price = (car.querySelector('.Price_price__WZayw') as HTMLElement)?.innerText;
+            const link = (car.querySelector('a.ListItem_title__znV2I') as HTMLElement)?.getAttribute('href');
+            const km = (car.querySelectorAll('.VehicleDetailTable_item__koEV4')?.[0] as HTMLElement)?.innerText;
+            const year = (car.querySelectorAll('.VehicleDetailTable_item__koEV4')?.[1] as HTMLElement)?.innerText;
+            const imgSrc = (car.querySelector('.NewGallery_img__bi92g') as HTMLElement)?.getAttribute('src');
+            // console.log({ title, price, km, year, link, imgSrc });
+            results.push({ title, price, km, year, link, imgSrc });
+            return results;
+          });
 
-        console.log(results)
-        
-        return results;
+        //console log entries of data
+        // console.log(data);
 
-    } catch (error) {
-        console.error(error);
-        return [];
-    }
-}
+        if(carList){
+        }
+        else {
+            console.log('No cars found');
+            return [];
+        }
+
+
+    });
+
+    console.log(data);
+
+
+    await browser.close();
+})();
