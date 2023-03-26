@@ -16,7 +16,7 @@ app.get('/scrapeEbay/:keyword', async (req,res) => {
   res.status(200).send(results);
   })
 
-app.get('/scrapeAutoscout', async (req,res) => {
+app.get('/scrapeAutoscout', async (req, res) => {
   const results = await scrapeAutoscout24();
   res.status(200).send(results);
   })
