@@ -1,10 +1,16 @@
 const puppeteer = require('puppeteer');
 
 
-export async function scrapeAutoscout24() {
+export async function scrapeAutoscout24(make: string, model: string) {
+
+    const transformedModel = transformModelString(model);
+
     const baseUrl = 'https://www.autoscout24.de';
-    const searchUrl = baseUrl + `/lst/toyota/celica?atype=C&cy=D&damaged_listing=exclude&desc=1&ocs_listing=include&powertype=kw&search_id=27ose429ogr&sort=age&ustate=N%2CU`;
+    const searchUrl = baseUrl + '/lst/' + make + '/' + transformedModel + '?atype=C&cy=D&damaged_listing=exclude&desc=1&ocs_listing=include&powertype=kw&search_id=27ose429ogr&sort=age&ustate=N%2CU';
+    // const searchUrl = baseUrl + `/lst/toyota/celica?atype=C&cy=D&damaged_listing=exclude&desc=1&ocs_listing=include&powertype=kw&search_id=27ose429ogr&sort=age&ustate=N%2CU`;
+
     
+
     const browser = await puppeteer.launch({
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
@@ -42,4 +48,8 @@ export async function scrapeAutoscout24() {
 
     await browser.close();
     return data;
+}
+
+function transformModelString(model: string) {
+    return model.replace(/\s/g, '-').toLowerCase();
 }
