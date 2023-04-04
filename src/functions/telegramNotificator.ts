@@ -32,7 +32,7 @@ export function sendAdsTimePeriod(carAds: CarAd[], timePeriod: number) {
     
     while (true) {
         sendAds(carAds);
-        setTimeout(() => {}, timePeriod);
+        setTimeout(() => {}, timePeriod * 1000);
     }
 
 }
