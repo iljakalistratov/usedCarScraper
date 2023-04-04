@@ -7,8 +7,8 @@ export async function mainLogic(){
     const scrapedCarAds2 = await scrapeEbayKl('celica')
     const carAds = mapToCarAds(scrapedCarAds);
     const carAds2 = mapToCarAds(scrapedCarAds2);
-    saveToCsvDatabase(carAds);
-    saveToCsvDatabase(carAds2);
+    saveToJsonDatabase(carAds);
+    saveToJsonDatabase(carAds2);
 }
 
 function mapToCarAds(scrapedCarAds: any[]): CarAd[] { 
@@ -66,4 +66,31 @@ function saveToCsvDatabase(carAds: CarAd[]): void {
         });
     
 
+}
+
+function saveToJsonDatabase(carAds: CarAd[]): void {
+
+    const fs = require('fs');
+    const path = require('path');
+
+    const filePath = path.join(__dirname, '../databases/carAdDatabase.json');
+
+    let jsonData: CarAd[] = [];
+    try {
+      const fileData = fs.readFileSync(filePath, 'utf8');
+      jsonData = JSON.parse(fileData);
+    } catch (err) {
+      // ignore error if file does not exist yet
+    }
+  
+    const existingLinks = new Set(jsonData.map(ad => ad.link));
+    const newCarAds = carAds.filter(ad => !existingLinks.has(ad.link));
+    if (newCarAds.length === 0) {
+      // nothing to add, return early
+      return;
+    }
+  
+    jsonData = [...jsonData, ...newCarAds];
+    const json = JSON.stringify(jsonData, null, 2);
+    fs.writeFileSync(filePath, json);
 }
