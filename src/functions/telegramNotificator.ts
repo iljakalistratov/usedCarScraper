@@ -27,3 +27,12 @@ export function sendAds(carAds: CarAd[]) {
     });
 
 }
+
+export function sendAdsTimePeriod(carAds: CarAd[], timePeriod: number) {
+    
+    while (true) {
+        sendAds(carAds);
+        setTimeout(() => {}, timePeriod);
+    }
+
+}
