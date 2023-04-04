@@ -1,6 +1,7 @@
 import { CarAd } from '../models/CarAd';
 import { scrapeAutoscout24 } from '../scraper/autoscout24';
 import { scrapeEbayKl } from '../scraper/ebayKl';
+import { sendAds } from '../functions/telegramNotificator'
 
 export async function mainLogic(){
     const scrapedCarAds = await scrapeAutoscout24('toyota', 'celica');
@@ -88,6 +89,9 @@ function saveToJsonDatabase(carAds: CarAd[]): void {
     if (newCarAds.length === 0) {
       // nothing to add, return early
       return;
+    }
+    else {
+        sendAds(newCarAds);
     }
   
     jsonData = [...jsonData, ...newCarAds];
