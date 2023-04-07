@@ -43,7 +43,7 @@ export async function scrapeAutoscout24(make: string, model: string) {
         });
 
 
-    console.log(data);
+    // console.log(data);
 
 
     await browser.close();

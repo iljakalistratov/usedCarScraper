@@ -16,14 +16,6 @@
     "imgSrc": "https://prod.pictures.autoscout24.net/listing-images/7477de72-7c35-4b1b-81e0-2663af1233b7_fad9f211-9a64-4033-aa91-2013093b3789.jpg"
   },
   {
-    "title": "Toyota Celica 1.8 I-16V Leder SHZ",
-    "price": "€ 6.600,-",
-    "km": "120.000 km",
-    "year": "03/2003",
-    "link": "https://www.autoscout24.de/angebote/toyota-celica-1-8-i-16v-leder-shz-benzin-blau-5c0a2d6b-9faa-4f44-bc2b-f25769d4fecc",
-    "imgSrc": "https://prod.pictures.autoscout24.net/listing-images/5c0a2d6b-9faa-4f44-bc2b-f25769d4fecc_5fb9d617-dbd9-449a-93ef-9b6d60011928.jpg"
-  },
-  {
     "title": "Toyota Celica 2.0 GT ST162 *Oldtimer*",
     "price": "€ 2.500,-",
     "km": "107.528 km",
@@ -191,22 +183,6 @@
     "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/55/553435f9-2dde-4d25-9def-aa7130c77e16?rule=$_3.JPG"
   },
   {
-    "title": "Toyota Celica T20",
-    "price": "€ 2.999,-",
-    "km": "206.000 km",
-    "year": "04/1997",
-    "link": "https://www.autoscout24.de/angebote/toyota-celica-t20-benzin-silber-8350fb02-db0e-406d-bae4-b5529a154ad9",
-    "imgSrc": "https://prod.pictures.autoscout24.net/listing-images/8350fb02-db0e-406d-bae4-b5529a154ad9_d93bbb81-d1c0-4f21-ad74-12fe909cd756.jpg"
-  },
-  {
-    "title": "Toyota Celica 1,8 - 1. Hand - TÜV Neu",
-    "price": "6.790 € VB",
-    "km": "138.326 km",
-    "year": "2005",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-1-8-1-hand-tuev-neu/2407953818-216-5589",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/46/4634f9c8-9bbb-463a-8573-32ece9487a07?rule=$_3.JPG"
-  },
-  {
     "title": "Toyota Celica 1.8 TS",
     "price": "7.777 €",
     "km": "145.000 km",
@@ -287,14 +263,6 @@
     "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/18/18da03a7-f341-4cdc-aa5a-26ac6f648d02?rule=$_3.JPG"
   },
   {
-    "title": "Toyota Celica 1.6 Cabriolet RA6 Zender Kit",
-    "price": "VB",
-    "km": "101.500 km",
-    "year": "1985",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-1-6-cabriolet-ra6-zender-kit/2406034444-216-6460",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/db/db451d57-6873-409c-b656-aad35c0b9843?rule=$_3.JPG"
-  },
-  {
     "title": "Toyota Celica Cabrio T18 GTI",
     "price": "4.500 €",
     "km": "312.000 km",
@@ -351,6 +319,14 @@
     "imgSrc": "https://prod.pictures.autoscout24.net/listing-images/a6e3580a-02de-4eff-a3b1-755a7f5c703b_1f9efa82-0d15-42d3-b05b-ca397159b430.jpg"
   },
   {
+    "title": "Toyota Celica 1.8 I-16V Leder SHZ",
+    "price": "€ 6.600,-",
+    "km": "120.000 km",
+    "year": "03/2003",
+    "link": "https://www.autoscout24.de/angebote/toyota-celica-1-8-i-16v-leder-shz-benzin-blau-5c0a2d6b-9faa-4f44-bc2b-f25769d4fecc",
+    "imgSrc": "https://prod.pictures.autoscout24.net/listing-images/5c0a2d6b-9faa-4f44-bc2b-f25769d4fecc_5fb9d617-dbd9-449a-93ef-9b6d60011928.jpg"
+  },
+  {
     "title": "Toyota Celica Celica TS",
     "price": "€ 9.900,-",
     "km": "57.300 km",
@@ -367,11 +343,43 @@
     "imgSrc": "https://prod.pictures.autoscout24.net/listing-images/fcb77cdf-6e5c-43a6-a9a1-d6eddac42804_7831e586-b1cd-4730-9785-9ef05abd8112.jpg"
   },
   {
+    "title": "Toyota Celica T20",
+    "price": "€ 2.999,-",
+    "km": "206.000 km",
+    "year": "04/1997",
+    "link": "https://www.autoscout24.de/angebote/toyota-celica-t20-benzin-silber-8350fb02-db0e-406d-bae4-b5529a154ad9",
+    "imgSrc": "https://prod.pictures.autoscout24.net/listing-images/8350fb02-db0e-406d-bae4-b5529a154ad9_d93bbb81-d1c0-4f21-ad74-12fe909cd756.jpg"
+  },
+  {
+    "title": "Toyota Celica t20",
+    "price": "2.000 €",
+    "km": "195.000 km",
+    "year": "1994",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t20/2408293468-216-6074",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/12/12d81967-53ce-4109-9f54-2a36a34c78d9?rule=$_3.JPG"
+  },
+  {
     "title": "TOYOTA CELICA GT FOUR",
     "price": "29.999 €",
     "km": "175.000 km",
     "year": "1988",
     "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-gt-four/2408197554-216-26995",
     "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/89/89f52799-a867-40ec-9891-9208b47bf64d?rule=$_3.JPG"
+  },
+  {
+    "title": "Toyota Celica 1,8 - 1. Hand - TÜV Neu",
+    "price": "6.790 € VB",
+    "km": "138.326 km",
+    "year": "2005",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-1-8-1-hand-tuev-neu/2407953818-216-5589",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/46/4634f9c8-9bbb-463a-8573-32ece9487a07?rule=$_3.JPG"
+  },
+  {
+    "title": "Toyota Celica 1.6 Cabriolet RA6 Zender Kit",
+    "price": "VB",
+    "km": "101.500 km",
+    "year": "1985",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-1-6-cabriolet-ra6-zender-kit/2406034444-216-6460",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/db/db451d57-6873-409c-b656-aad35c0b9843?rule=$_3.JPG"
   }
 ]

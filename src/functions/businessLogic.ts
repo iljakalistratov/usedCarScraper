@@ -27,7 +27,7 @@ export async function mainLogic(){
 
 }
 
-function mapToCarAds(scrapedCarAds: any[]): CarAd[] { 
+export function mapToCarAds(scrapedCarAds: any[]): CarAd[] { 
 
     return scrapedCarAds.map((carAd) => {
         return {
@@ -84,7 +84,7 @@ function saveToCsvDatabase(carAds: CarAd[]): void {
 
 }
 
-function getNewAds(carAds: CarAd[]): CarAd[] {
+export function getNewAds(carAds: CarAd[]): CarAd[] {
 
     const fs = require('fs');
     const path = require('path');
