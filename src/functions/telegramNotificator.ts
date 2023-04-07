@@ -8,12 +8,25 @@ const bot = new TelegramBot(token!, { polling: true });
 
 let chatId = 0;
 
+// Bot on on /start
 export function testTgBot() {
-    bot.on('message', (msg) => {
-    console.log(msg)
-    chatId = msg.chat.id;
-    bot.sendMessage(chatId, 'Welcome to usedCarScraperBot');
-    });
+
+    bot.onText(/\/start/, (msg) => {
+        console.log(msg)
+        chatId = msg.chat.id;
+        bot.sendMessage(chatId, 'Welcome to usedCarScraperBot');
+    }
+    );
+
+    bot.onText(/\/downloadDatabase/, (msg) => {
+        console.log(msg)
+        chatId = msg.chat.id;
+        const path = require('path');
+        const filePath = path.join(__dirname, '../databases/carAdDatabase.json');
+        bot.sendDocument(chatId, filePath);
+    }
+    );
+
 }
 
 export function sendAds(carAds: CarAd[]) {

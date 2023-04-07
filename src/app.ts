@@ -43,5 +43,3 @@ app.get('/testDatabase', async (_, res) => {
   })
 
 app.listen(port, () => console.log(`Running on port ${port}`))
-
-
