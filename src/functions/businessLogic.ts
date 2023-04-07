@@ -3,13 +3,28 @@ import { scrapeAutoscout24 } from '../scraper/autoscout24';
 import { scrapeEbayKl } from '../scraper/ebayKl';
 import { sendAds } from '../functions/telegramNotificator'
 
+
+
 export async function mainLogic(){
+
+    const fs = require('fs');
+    const path = require('path');
+    const preferences = JSON.parse(fs.readFileSync(path.join(__dirname, '../databases/preferences.json')));
+    const timePeriod = preferences.time_period_in_sec;
+
     const scrapedCarAds = await scrapeAutoscout24('toyota', 'celica');
     const scrapedCarAds2 = await scrapeEbayKl('celica')
     const carAds = mapToCarAds(scrapedCarAds);
     const carAds2 = mapToCarAds(scrapedCarAds2);
-    saveToJsonDatabase(carAds);
-    saveToJsonDatabase(carAds2);
+    const newCarAds = getNewAds(carAds);
+    const newCarAds2 = getNewAds(carAds2);
+    const allNewCarAds = [...newCarAds, ...newCarAds2];
+
+    sendAds(allNewCarAds);
+
+
+    setTimeout(mainLogic, timePeriod * 1000);
+
 }
 
 function mapToCarAds(scrapedCarAds: any[]): CarAd[] { 
@@ -69,7 +84,7 @@ function saveToCsvDatabase(carAds: CarAd[]): void {
 
 }
 
-function saveToJsonDatabase(carAds: CarAd[]): void {
+function getNewAds(carAds: CarAd[]): CarAd[] {
 
     const fs = require('fs');
     const path = require('path');
@@ -88,13 +103,20 @@ function saveToJsonDatabase(carAds: CarAd[]): void {
     const newCarAds = carAds.filter(ad => !existingLinks.has(ad.link));
     if (newCarAds.length === 0) {
       // nothing to add, return early
-      return;
+      return [];
     }
     else {
-        sendAds(newCarAds);
+        jsonData = [...jsonData, ...newCarAds];
+        const json = JSON.stringify(jsonData, null, 2);
+        fs.writeFileSync(filePath, json);
+
+        return newCarAds;
     }
   
-    jsonData = [...jsonData, ...newCarAds];
-    const json = JSON.stringify(jsonData, null, 2);
-    fs.writeFileSync(filePath, json);
 }
+
+function sendNewAds(carAds: CarAd[]): void {
+    
+    sendAds(carAds);
+}
+

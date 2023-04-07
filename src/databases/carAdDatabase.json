@@ -191,12 +191,124 @@
     "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/55/553435f9-2dde-4d25-9def-aa7130c77e16?rule=$_3.JPG"
   },
   {
-    "title": "Toyota Celica T23 TS / 110.000 km / 3.Hand",
-    "price": "9.000 € VB",
-    "km": "109.795 km",
+    "title": "Toyota Celica T20",
+    "price": "€ 2.999,-",
+    "km": "206.000 km",
+    "year": "04/1997",
+    "link": "https://www.autoscout24.de/angebote/toyota-celica-t20-benzin-silber-8350fb02-db0e-406d-bae4-b5529a154ad9",
+    "imgSrc": "https://prod.pictures.autoscout24.net/listing-images/8350fb02-db0e-406d-bae4-b5529a154ad9_d93bbb81-d1c0-4f21-ad74-12fe909cd756.jpg"
+  },
+  {
+    "title": "Toyota Celica 1,8 - 1. Hand - TÜV Neu",
+    "price": "6.790 € VB",
+    "km": "138.326 km",
     "year": "2005",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t23-ts-110-000-km-3-hand/2403506114-216-24776",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/a4/a4e53625-8568-48aa-beaf-7149f2b5f785?rule=$_3.JPG"
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-1-8-1-hand-tuev-neu/2407953818-216-5589",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/46/4634f9c8-9bbb-463a-8573-32ece9487a07?rule=$_3.JPG"
+  },
+  {
+    "title": "Toyota Celica 1.8 TS",
+    "price": "7.777 €",
+    "km": "145.000 km",
+    "year": "2003",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-1-8-ts/2407895564-216-20564",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/8e/8e86577b-0b46-4914-a652-839ede6a0024?rule=$_3.JPG"
+  },
+  {
+    "title": "Toyota Celica",
+    "price": "9.500 €",
+    "km": "101.500 km",
+    "year": "1985",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica/2407321835-216-6460",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/2e/2e622665-9366-4f7c-885b-62cfdc906f41?rule=$_3.JPG"
+  },
+  {
+    "title": "Toyota Celica 1.8 TÜV neu Klimaautomatik. Alufelgen",
+    "price": "3.450 € VB",
+    "km": "205.122 km",
+    "year": "2000",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-1-8-tuev-neu-klimaautomatik-alufelgen/2407275114-216-1100",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/b3/b35cef8d-3a5f-48e6-bcbe-689dbcf1273d?rule=$_3.JPG"
+  },
+  {
+    "title": "Toyota Celica",
+    "price": "12.500 €",
+    "km": "152.000 km",
+    "year": "1976",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica/2407217994-216-7768",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/d5/d5b59d81-e3b0-4fae-b5a2-96a44282922f?rule=$_3.JPG"
+  },
+  {
+    "title": "Celica 1.8 Checkheftgepflegt",
+    "price": "2.650 € VB",
+    "km": "199.900 km",
+    "year": "2002",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/celica-1-8-checkheftgepflegt/2406947177-216-4331",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/75/7515c9a2-3468-4c6f-a5df-259eaa86b79d?rule=$_3.JPG"
+  },
+  {
+    "title": "Toyota Celica t23 143ps mit TÜV voll fahrbereit",
+    "price": "1.200 €",
+    "km": "337.000 km",
+    "year": "2000",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t23-143ps-mit-tuev-voll-fahrbereit/2406899710-216-6433",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/e8/e8703f01-160c-4066-a74b-c1ea8514b5d3?rule=$_3.JPG"
+  },
+  {
+    "title": "Toyota Celica 1.8 -",
+    "price": "4.700 €",
+    "km": "120.000 km",
+    "year": "2004",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-1-8-/2406864211-216-6688",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/a4/a4975972-5efd-4c1a-8832-a363a75a92c9?rule=$_3.JPG"
+  },
+  {
+    "title": "[SUCHE] Toyota Celica T20",
+    "price": "VB",
+    "km": "Gesuch",
+    "year": "1.000 km",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/-suche-toyota-celica-t20/2406825692-216-10513",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/f0/f027b6fe-239a-4889-bad9-d5e10842d0cc?rule=$_3.JPG"
+  },
+  {
+    "title": "Toyota Celica T23 Tausch möglich(Benziner)",
+    "price": "2.100 € VB",
+    "km": "337.000 km",
+    "year": "2000",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t23-tausch-moeglich-benziner-/2406796332-216-16395",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/13/13e61a1b-ca0b-4a3d-8bec-98f05a2e7fca?rule=$_3.JPG"
+  },
+  {
+    "title": "Unfall Toyota Celica GT-4 ST205",
+    "price": "21.000 €",
+    "km": "142.000 km",
+    "year": "1994",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/unfall-toyota-celica-gt-4-st205/2406441682-216-4903",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/18/18da03a7-f341-4cdc-aa5a-26ac6f648d02?rule=$_3.JPG"
+  },
+  {
+    "title": "Toyota Celica 1.6 Cabriolet RA6 Zender Kit",
+    "price": "VB",
+    "km": "101.500 km",
+    "year": "1985",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-1-6-cabriolet-ra6-zender-kit/2406034444-216-6460",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/db/db451d57-6873-409c-b656-aad35c0b9843?rule=$_3.JPG"
+  },
+  {
+    "title": "Toyota Celica Cabrio T18 GTI",
+    "price": "4.500 €",
+    "km": "312.000 km",
+    "year": "1993",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-cabrio-t18-gti/2405891709-216-1214",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/d3/d378078f-7599-4856-9fd1-6704e44cf6ae?rule=$_3.JPG"
+  },
+  {
+    "title": "Toyota Celica 1.8 I-16V  S",
+    "price": "2.990 €",
+    "km": "207.205 km",
+    "year": "2000",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-1-8-i-16v-s/2405775480-216-5037",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/b6/b66a929e-5867-4bda-ae37-4dc64866b2bd?rule=$_3.JPG"
   },
   {
     "title": "Verkaufe Toyota Celica 1,8 Oldtimer nächstes Jahr",
@@ -207,148 +319,12 @@
     "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/b7/b70f348a-42df-4543-9b4e-57eb3f2d4ca3?rule=$_3.JPG"
   },
   {
-    "title": "Toyota Celica T23 als Anfänger Auto Tüv neu ⭐️⭐️⭐️",
-    "price": "1.500 €",
-    "km": "336.000 km",
-    "year": "2000",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t23-als-anfaenger-auto-tuev-neu-/2402695971-216-6433",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/47/4733b208-3380-4873-ae7c-8c11bb581ecd?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota Celica 1.8 VVT-i 1. Hand - TÜV Neu",
-    "price": "6.790 € VB",
-    "km": "138.325 km",
-    "year": "2005",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-1-8-vvt-i-1-hand-tuev-neu/2401621585-216-5589",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/50/500a4241-0592-4615-86a0-33ac4dad9eb3?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota Celica T23",
-    "price": "5.500 € VB",
-    "km": "235.000 km",
-    "year": "2002",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t23/2401080403-216-1386",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/b5/b5e05c7e-fff3-4937-ae45-43f2ed83d35f?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota celica",
-    "price": "6.000 €",
-    "km": "261.000 km",
-    "year": "2000",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica/2401054783-216-6317",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/6f/6fa4b82c-614e-42bb-acd0-5728130cf4e7?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota Celica Cabriolet GT 2,2 Oldtimer, von Rentnerhand.",
-    "price": "21.000 € VB",
-    "km": "146.000 km",
-    "year": "1992",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-cabriolet-gt-2-2-oldtimer-von-rentnerhand-/2400941369-216-1496",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/a4/a4d8214e-d0c3-49ef-b9c0-fd12e2633c17?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota Celica T23 1.8 Rot | Tüv Neu | 136000 km",
-    "price": "9.000 €",
-    "km": "136.000 km",
-    "year": "1999",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t23-1-8-rot-tuev-neu-136000-km/2400833316-216-1757",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/82/82f78fae-8455-47e0-a12c-e238971a0320?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota Celica 1.8 I-16V Leder SHZ",
-    "price": "6.600 €",
-    "km": "120.000 km",
-    "year": "2003",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-1-8-i-16v-leder-shz/2400670182-216-5632",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/aa/aaac70e0-037d-45c7-b70c-6e5009cbfa5a?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota Celica T23 1ZZFE VEILSIDE",
-    "price": "1.000 € VB",
-    "km": "240.000 km",
-    "year": "2004",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t23-1zzfe-veilside/2400411070-216-4801",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/11/110f0a1c-7a44-48a6-9646-fa2c89e1abd1?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota Celica Cabrio T 18",
-    "price": "8.300 €",
-    "km": "208.500 km",
-    "year": "1992",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-cabrio-t-18/2400282286-216-8339",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/6f/6ffd4479-06fc-4531-b165-52ba7fe5c025?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota Celica 1.8 S S",
-    "price": "8.900 €",
-    "km": "76.500 km",
-    "year": "2000",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-1-8-s-s/2400023822-216-4087",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/5f/5f2ee6b3-62ff-4d4b-96da-5f4c135c6194?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota Celica T16 Cabrio Targa",
-    "price": "2.900 € VB",
-    "km": "109.000 km",
-    "year": "1989",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t16-cabrio-targa/2399576237-216-9366",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/47/47c3578d-b485-46c1-80c1-466f6692be89?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota Celica Liftback TA28 inkl. Ersatzteile",
-    "price": "15.000 € VB",
-    "km": "61.323 km",
-    "year": "1976",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-liftback-ta28-inkl-ersatzteile/2399311715-216-1244",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/3b/3bd295f3-4a5e-49e4-9306-32dca0a00fc2?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota Celica T23 Tüv neu",
-    "price": "3.300 €",
-    "km": "269.300 km",
-    "year": "2000",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t23-tuev-neu/2399082009-216-1449",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/98/98bb6523-c958-4b06-a396-a1d94bc46142?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota Celica Celica TS",
-    "price": "€ 9.900,-",
-    "km": "57.300 km",
-    "year": "01/2001",
-    "link": "https://www.autoscout24.de/angebote/toyota-celica-celica-ts-benzin-weiss-e878140d-951e-4608-8442-8a03727314d1",
-    "imgSrc": "https://prod.pictures.autoscout24.net/listing-images/e878140d-951e-4608-8442-8a03727314d1_305e813e-930c-4446-b07c-d5071a29ecd3.jpg"
-  },
-  {
-    "title": "Toyota Celica 1.8 I-16V S TÜV 04/23 Xenon Klimaauto",
-    "price": "€ 2.499,-",
-    "km": "224.054 km",
-    "year": "01/2000",
-    "link": "https://www.autoscout24.de/angebote/toyota-celica-1-8-i-16v-s-tuev-04-23-xenon-klimaauto-benzin-blau-fcb77cdf-6e5c-43a6-a9a1-d6eddac42804",
-    "imgSrc": "https://prod.pictures.autoscout24.net/listing-images/fcb77cdf-6e5c-43a6-a9a1-d6eddac42804_7831e586-b1cd-4730-9785-9ef05abd8112.jpg"
-  },
-  {
-    "title": "Toyota Celica T23 als Anfänger Auto Tüv neu ⭐️⭐️⭐️ Fahrbereit",
-    "price": "1.500 €",
-    "km": "336.000 km",
-    "year": "2000",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t23-als-anfaenger-auto-tuev-neu-fahrbereit/2402695971-216-6433",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/47/4733b208-3380-4873-ae7c-8c11bb581ecd?rule=$_3.JPG"
-  },
-  {
     "title": "Toyota Celica  T18, 1.6 ST-I 16V   H-Kennz. optional",
     "price": "5.600 €",
     "km": "186.400 km",
     "year": "1992",
     "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t18-1-6-st-i-16v-h-kennz-optional/2402670273-216-1596",
     "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/62/62d2fa0b-d0e1-4a23-937f-d4905f962289?rule=$_3.JPG"
-  },
-  {
-    "title": "Toyota Celica ",
-    "price": "€ 4.500,-",
-    "km": "187.370 km",
-    "year": "07/2004",
-    "link": "https://www.autoscout24.de/angebote/toyota-celica-benzin-schwarz-a6e3580a-02de-4eff-a3b1-755a7f5c703b",
-    "imgSrc": "https://prod.pictures.autoscout24.net/listing-images/a6e3580a-02de-4eff-a3b1-755a7f5c703b_1f9efa82-0d15-42d3-b05b-ca397159b430.jpg"
   },
   {
     "title": "Toyota Celica T18 GTi - H-Kennzeichen",
@@ -359,11 +335,11 @@
     "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/6f/6f9d4c2f-dfa3-41d6-820f-d04ded54ca50?rule=$_3.JPG"
   },
   {
-    "title": "Toyota Celica T23 TS Facelift Xenon FRISCH TÜV 04/25",
-    "price": "9.800 € VB",
-    "km": "186.972 km",
-    "year": "2004",
-    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t23-ts-facelift-xenon-frisch-tuev-04-25/2402530982-216-22542",
-    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/8a/8a46c50c-f075-4456-985e-9f3b979143a8?rule=$_3.JPG"
+    "title": "Toyota Celica T23",
+    "price": "5.500 € VB",
+    "km": "235.000 km",
+    "year": "2002",
+    "link": "https://www.ebay-kleinanzeigen.de/s-anzeige/toyota-celica-t23/2401080403-216-1386",
+    "imgSrc": "https://img.ebay-kleinanzeigen.de/api/v1/prod-ads/images/b5/b5e05c7e-fff3-4937-ae45-43f2ed83d35f?rule=$_3.JPG"
   }
 ]
