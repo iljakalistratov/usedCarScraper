@@ -26,7 +26,7 @@ export async function scrapeEbayKl(keyword: string) {
       results.push({ title, price, km, year, link, imgSrc });
     });
 
-    console.log(results)
+    // console.log(results)
     
     return results;
 

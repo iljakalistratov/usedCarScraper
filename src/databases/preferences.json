@@ -1,3 +1,16 @@
-{
-    "time_period_in_sec": "300"
-}
+[
+    {
+        "chat_id": 1332126703,
+        "time_period_in_sec": "300",
+        "cars": [
+            {
+                "car_make": "Audi",
+                "car_model": "A4"
+            },
+            {
+                "car_make": "Toyota",
+                "car_model": "Mr 2"
+            }
+        ]
+    }
+]
