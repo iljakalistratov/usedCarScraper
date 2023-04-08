@@ -6,30 +6,30 @@ const token = process.env.TELEGRAM_TOKEN;
 
 const bot = new TelegramBot(token!, { polling: true });
 
-let chatId = 0;
+// let chatId = 0;
 
 // Bot on on /start
 export function testTgBot() {
 
     bot.onText(/\/start/, (msg) => {
         console.log(msg)
-        chatId = msg.chat.id;
+        const chatId = msg.chat.id;
         bot.sendMessage(chatId, 'Welcome to usedCarScraperBot');
     }
     );
 
-    bot.onText(/\/downloadDatabase/, (msg) => {
-        console.log(msg)
-        chatId = msg.chat.id;
-        const path = require('path');
-        const filePath = path.join(__dirname, '../databases/carAdDatabase.json');
-        bot.sendDocument(chatId, filePath);
-    }
-    );
+    // bot.onText(/\/downloadDatabase/, (msg) => {
+    //     console.log(msg)
+    //     chatId = msg.chat.id;
+    //     const path = require('path');
+    //     const filePath = path.join(__dirname, '../databases/carAdDatabase.json');
+    //     bot.sendDocument(chatId, filePath);
+    // }
+    // );
 
 }
 
-export function sendAds(carAds: CarAd[]) {
+export function sendAds(chatId: number, carAds: CarAd[]) {
     carAds.forEach((carAd) => {
         if (carAd.imgSrc) {
             bot.sendPhoto(chatId, carAd.imgSrc, {caption: carAd.title + '\n' + carAd.price + '\n' + carAd.km + '\n' + carAd.year + '\n' + carAd.link});
@@ -41,11 +41,3 @@ export function sendAds(carAds: CarAd[]) {
 
 }
 
-export function sendAdsTimePeriod(carAds: CarAd[], timePeriod: number) {
-    
-    while (true) {
-        sendAds(carAds);
-        setTimeout(() => {}, timePeriod * 1000);
-    }
-
-}

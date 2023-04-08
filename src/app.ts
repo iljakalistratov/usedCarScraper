@@ -18,7 +18,6 @@ app.get('/', (_,res) => {
 app.get('/scrapeEbay/:keyword', async (req,res) => {
   const keyword = req.params.keyword;
   const results = await scrapeEbayKl(keyword);
-  sendAds(results);
   res.status(200).send(results);
   })
 
@@ -26,7 +25,6 @@ app.get('/scrapeAutoscout/:make/:model', async (req, res) => {
   const make = req.params.make;
   const model = req.params.model;
   const results = await scrapeAutoscout24(make, model);
-  sendAds(results);
   res.status(200).send(results);
   })
 
