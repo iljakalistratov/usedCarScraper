@@ -18,6 +18,9 @@ export function testTgBot() {
 
         bot.onText(/\/addCarModel/, (msg: TelegramBot.Message) => {
             console.log(msg);
+
+            bot.removeAllListeners('message');
+
             bot.sendMessage(chatId, 'Please type the make of the car you want to be notified for');
 
             const makeListener = (msg: TelegramBot.Message) => {
