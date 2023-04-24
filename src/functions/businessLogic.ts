@@ -37,6 +37,45 @@ export async function mainLogic(){
 
 }
 
+export async function mainLogicSpecificUser(chatID: number){
+    const fs = require('fs');
+    const path = require('path');
+    const preferences = JSON.parse(fs.readFileSync(path.join(__dirname, '../databases/preferences.json')));
+
+    //search for obejct with given chatID in preferences
+    //if object found, get time_period_in_sec and cars
+    //if not found create new object with chatID and time_period_in_sec and cars
+    const userPreferences = preferences.find((preference: { chat_id: number; }) => preference.chat_id === chatID);
+
+    if (userPreferences) {
+        const timePeriod = userPreferences.time_period_in_sec;
+        const cars = userPreferences.cars;
+
+        for (const car of cars) {
+            const allNewCarAds = await getAllNewCarAds(car.make, car.model);
+            sendAds(chatID, allNewCarAds);
+        }
+
+        setTimeout(mainLogicSpecificUser, timePeriod * 1000, chatID)
+    }
+    else {
+        
+        const newPreference = {
+            chat_id: chatID,
+            time_period_in_sec: 60,
+            cars: [
+            ]
+        }
+
+        preferences.push(newPreference);
+        const json = JSON.stringify(preferences, null, 2);
+        fs.writeFileSync(path.join(__dirname, '../databases/preferences.json'), json);
+
+        setTimeout(mainLogicSpecificUser, 60 * 1000, chatID)
+    }
+
+}
+
 async function getAllNewCarAds(make: string, model:string): Promise<CarAd[]> {
 
     const scrapedCarAds = await scrapeAutoscout24(make, model);
