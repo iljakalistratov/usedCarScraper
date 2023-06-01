@@ -1,6 +1,7 @@
 node_modules/
-packeage-lock.json
 
 screenshot.png
 
 .env
+
+package-lock.json
