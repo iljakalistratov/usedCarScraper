@@ -7,8 +7,6 @@ export async function scrapeAutoscout24(make: string, model: string) {
 
     const baseUrl = 'https://www.autoscout24.de';
     const searchUrl = baseUrl + '/lst/' + make + '/' + transformedModel + '?atype=C&cy=D&damaged_listing=exclude&desc=1&ocs_listing=include&powertype=kw&search_id=27ose429ogr&sort=age&ustate=N%2CU';
-    // const searchUrl = baseUrl + `/lst/toyota/celica?atype=C&cy=D&damaged_listing=exclude&desc=1&ocs_listing=include&powertype=kw&search_id=27ose429ogr&sort=age&ustate=N%2CU`;
-
     
 
     const browser = await puppeteer.launch({
