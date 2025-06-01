@@ -68,7 +68,7 @@ app.get("/checkCarAd", async (req, res) => {
 });
 
 // 5) Add a CarAd to the DB (use query params for all fields)
-app.get("/addCarAd", async (req, res) => {
+app.post("/addCarAd", async (req, res) => {
   try {
     const chatId = parseInt(req.query.chatId as string, 10);
     const title = req.query.title as string;

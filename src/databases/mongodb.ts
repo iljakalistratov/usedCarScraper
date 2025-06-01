@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import { User } from "../models/User"; 
 
-const db = mongoose.connect("mongodb://admin:admin@mongo:27017/usedCarScraper");
+const db = mongoose.connect("mongodb://admin:admin@mongo:27017/usedcarsdb?authSource=admin");
 
 
 const UserSchema = new Schema({
@@ -60,11 +60,11 @@ export async function createUser(userData: {
     const savedUser = await user.save();
     return savedUser;
   } catch (error) {
-    throw new Error(`Failed to create user: ${error.message}`);
+    const err = error as Error;
+    throw new Error(`Failed to create user: ${err.message}`);
   }
 }
 
-// Function to delete a user by chatId
 export async function deleteUser(chatId: number): Promise<void> {
   try {
     const result = await UserModel.deleteOne({ chatId });
@@ -72,7 +72,8 @@ export async function deleteUser(chatId: number): Promise<void> {
       throw new Error(`No user found with chatId: ${chatId}`);
     }
   } catch (error) {
-    throw new Error(`Failed to delete user: ${error.message}`);
+    const err = error as Error;
+    throw new Error(`Failed to delete user: ${err.message}`);
   }
 }
 

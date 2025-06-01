@@ -44,6 +44,7 @@ COPY --from=builder /usr/src/app/dist ./dist
 # 2.4 Exponiere Port 3000, falls Dein Bot im Webhook‐Modus läuft.
 #     Bei reinen Polling‐Bots ist EXPOSE nicht zwingend nötig, schadet aber auch nicht.
 EXPOSE 3000
+EXPOSE 5000
 
 # 2.5 Als letztes: Starte den Bot über node dist/app.js
 #     (Dein TypeScript‐Entrypoint war src/app.ts → kompiliert nach dist/app.js)
