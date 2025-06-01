@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: usedcarscraper-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      # Mit dieser Zeile wird MONGODB_URI im Container korrekt zusammengebaut:
+      - MONGODB_URI=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/usedcarsdb?authSource=admin
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6.0
+    container_name: usedcarscraper-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    env_file:
+      - .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=usedcarsdb
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
