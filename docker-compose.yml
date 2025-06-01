@@ -29,6 +29,7 @@ services:
       - MONGO_INITDB_DATABASE=usedcarsdb
     volumes:
       - mongo_data:/data/db
+      - ./src/mongo_init:/docker-entrypoint-initdb.d:ro
 
 volumes:
   mongo_data:

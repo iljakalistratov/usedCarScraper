@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose"
 
-const db = mongoose.connect("mongodb://localhost:27017/usedCarScraper");
+const db = mongoose.connect("mongodb://admin:admin@mongo:27017/usedCarScraper");
 
 
 const UserSchema = new Schema({
