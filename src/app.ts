@@ -7,6 +7,8 @@ import { testTgBot, sendAds } from './functions/telegramNotificator'
 import {
   checkIfCarAdAlreadyInDb,
   addCarAdToDb,
+  createUser,
+  deleteUser,
 } from "./databases/mongodb";
 
 testTgBot();
@@ -107,6 +109,46 @@ app.post("/addCarAd", async (req, res) => {
     }
   } catch (err) {
     res.status(500).send(`Error adding CarAd: ${err}`);
+  }
+});
+
+// --- User MongoDB REST Endpoints ---
+
+// Create a new user
+app.post("/user", async (req, res) => {
+  try {
+    const chatId = parseInt(req.query.chatId as string, 10);
+    const timePeriod = parseInt(req.query.timePeriod as string, 10);
+    let cars: Array<{ make: string; model: string }> = [];
+    if (req.query.cars) {
+      // cars should be a JSON string: '[{"make":"BMW","model":"320d"}]'
+      try {
+        cars = JSON.parse(req.query.cars as string);
+      } catch (e) {
+        return res.status(400).send("Invalid cars format. Must be JSON array.");
+      }
+    }
+    if (!chatId || !timePeriod) {
+      return res.status(400).send("Missing required query parameters: chatId, timePeriod. Optional: cars (JSON array)");
+    }
+    const user = await createUser({ chatId, timePeriod, cars });
+    res.status(200).send(`User created: ${JSON.stringify(user)}`);
+  } catch (err) {
+    res.status(500).send(`Error creating user: ${err}`);
+  }
+});
+
+// Delete a user by chatId
+app.delete("/user/:chatId", async (req, res) => {
+  try {
+    const chatId = parseInt(req.params.chatId, 10);
+    if (!chatId) {
+      return res.status(400).send("Missing or invalid chatId parameter.");
+    }
+    await deleteUser(chatId);
+    res.status(200).send(`User with chatId ${chatId} deleted.`);
+  } catch (err) {
+    res.status(500).send(`Error deleting user: ${err}`);
   }
 });
 
