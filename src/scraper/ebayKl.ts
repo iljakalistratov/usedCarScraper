@@ -18,8 +18,8 @@ export async function scrapeEbayKl(keyword: string) {
       const title = $(element).find('.ellipsis').text().trim();
       const price = $(element).find('.aditem-main--middle--price-shipping--price').text().trim();
       const link = `${baseUrl}${$(element).find('a.ellipsis').attr('href')}`;
-      const km = $(element).find('span.simpletag').eq(0).text();
-      const year = $(element).find('span.simpletag').eq(1).text();
+      const km = $(element).find('span.simpletag').eq(0).text().replace(/\n/g, '').trim();
+      const year = $(element).find('span.simpletag').eq(1).text().replace(/\n/g, '').trim();
       const imgSrc = $(element).find('.imagebox').attr('data-imgsrc')?.replace(/\$_2/, '$_3');
 
       // console.log({ title, price, link })
