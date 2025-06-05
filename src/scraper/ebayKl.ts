@@ -2,8 +2,8 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 
 export async function scrapeEbayKl(keyword: string) {
-    const baseUrl = 'https://www.ebay-kleinanzeigen.de';
-//   const searchUrl = `${baseUrl}/s-suchanfrage.html?keywords=${encodeURIComponent(keyword)}&categoryId=${encodeURIComponent(category)}`;
+    const baseUrl = 'https://www.kleinanzeigen.de';
+    //   const searchUrl = `${baseUrl}/s-suchanfrage.html?keywords=${encodeURIComponent(keyword)}&categoryId=${encodeURIComponent(category)}`;
     // const searchUrl = baseUrl + '/s-autos/' + keyword +'/k0c216';
     const searchUrl = baseUrl + '/s-autos/c216?keywords=' + keyword;
 
@@ -36,3 +36,4 @@ export async function scrapeEbayKl(keyword: string) {
   }
 }
 
+scrapeEbayKl("audi-a4");
