@@ -64,6 +64,3 @@ export async function scrapeWillhaben(make: string, model: string) {
     return [];
   }
 }
-
-
-scrapeWillhaben("mercedes-benz", "c-klasse");

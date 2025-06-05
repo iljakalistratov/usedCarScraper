@@ -1,5 +1,4 @@
 import { CarAd } from '../models/CarAd';
-import { scrapeAutoscout24 } from '../scraper/autoscout24';
 import { scrapeEbayKl } from '../scraper/ebayKl';
 import { sendAds } from '../functions/telegramNotificator'
 
@@ -78,15 +77,16 @@ export async function mainLogicSpecificUser(chatID: number){
 
 async function getAllNewCarAds(make: string, model:string): Promise<CarAd[]> {
 
-    const scrapedCarAds = await scrapeAutoscout24(make, model);
+    /* const scrapedCarAds = await scrapeAutoscout24(make, model); */
     const scrapedCarAds2 = await scrapeEbayKl(model)
-    const carAds = mapToCarAds(scrapedCarAds);
+    /* const carAds = mapToCarAds(scrapedCarAds); */
     const carAds2 = mapToCarAds(scrapedCarAds2);
-    const newCarAds = getNewAds(carAds);
+    /* const newCarAds = getNewAds(carAds); */
     const newCarAds2 = getNewAds(carAds2);
-    const allNewCarAds = [...newCarAds, ...newCarAds2];
+    /* const allNewCarAds = [...newCarAds, ...newCarAds2]; */
 
-    return allNewCarAds;
+    //return allNewCarAds;
+    return newCarAds2;
 
 }
 

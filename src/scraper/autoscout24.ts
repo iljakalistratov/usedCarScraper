@@ -56,8 +56,46 @@ export async function scrapeAutoscout24(make: string, model: string) {
     return data;
 }
 
+// Function to mock sample data for testing purposes
+export function scrapeAutoscout24Data(make: string, model: string): any[] {
+    return [
+        {         
+            title: 'Toyota Yaris 1.5 Hybrid',
+            price: '15.000 €',
+            km: '50.000 km',
+            year: '2019',
+            link: 'https://www.autoscout24.de/angebote/toyota-yaris-1-5-hybrid-2019',
+            imgSrc: 'https://example.com/toyota-yaris.jpg'
+        },
+        {
+            title: 'Toyota Yaris 1.0',
+            price: '10.000 €',
+            km: '30.000 km',
+            year: '2020',
+            link: 'https://www.autoscout24.de/angebote/toyota-yaris-1-0-2020',
+            imgSrc: 'https://example.com/toyota-yaris-1-0.jpg'
+        },
+        {
+            title: 'Toyota Yaris 1.5 Hybrid',
+            price: '14.000 €',
+            km: '40.000 km',
+            year: '2018',
+            link: 'https://www.autoscout24.de/angebote/toyota-yaris-1-5-hybrid-2018',
+            imgSrc: 'https://example.com/toyota-yaris-1-5-hybrid.jpg'
+        },
+        {
+            title: 'Toyota Yaris 1.0',
+            price: '12.000 €',
+            km: '20.000 km',
+            year: '2021',
+            link: 'https://www.autoscout24.de/angebote/toyota-yaris-1-0-2021',
+            imgSrc: 'https://example.com/toyota-yaris-1-0-2021.jpg'
+        }
+    ];
+}
+
 function transformModelString(model: string) {
     return model.replace(/\s/g, '-').toLowerCase();
 }
-
-scrapeAutoscout24("toyota", "yaris");
+/* 
+scrapeAutoscout24("toyota", "yaris"); */
