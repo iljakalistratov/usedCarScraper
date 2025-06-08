@@ -62,10 +62,11 @@ export async function testTgBot() {
                         // };
 
                         var timePeriod = timeInSeconds;
+                        let parsedCars: Array<{ make: string; model: string }> = [];
 
                         //console.log(user);
-                        
-                        const userTest = await createUser({ chatId, timePeriod, cars: [{ make, model }] });
+                        parsedCars.push({ make, model });
+                        const userTest = await createUser({ chatId, timePeriod, cars: parsedCars });
 
                         console.log(userTest);
                         // create the user in mongodb
