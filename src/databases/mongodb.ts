@@ -57,9 +57,14 @@ export async function createUser(userData: {
 }): Promise<User> {
   try {
     const user = new UserModel(userData);
+    console.log("HERE USER CREATE METHODE:");
+    console.log(userData);
+    console.log(user);
     const savedUser = await user.save();
+    console.log(savedUser);
     return savedUser;
   } catch (error) {
+    console.log("Leider ein error beim create mit diesem user: " + userData);
     const err = error as Error;
     throw new Error(`Failed to create user: ${err.message}`);
   }

@@ -11,7 +11,7 @@ const bot = new TelegramBot(token!, { polling: true });
 // let chatId = 0;
 
 // Bot on on /start
-export function testTgBot() {
+export async function testTgBot() {
 
     bot.onText(/\/start/, (msg: TelegramBot.Message) => {
         console.log(msg);
@@ -45,7 +45,7 @@ export function testTgBot() {
                     bot.sendMessage(chatId, 'Thank you.\nNow please type the time period in seconds you want to be notified for (min. 300 sec)');
                     bot.removeListener('message', modelListener);
 
-                    const timeListener = (msg: TelegramBot.Message) => {
+                    const timeListener = async (msg: TelegramBot.Message) => {
                         const timeInSeconds = parseInt(msg.text || '', 10);
                         if (isNaN(timeInSeconds) || timeInSeconds < 300) {
                             bot.sendMessage(chatId, 'Invalid time period. Please enter a number greater than or equal to 300.');
@@ -55,22 +55,29 @@ export function testTgBot() {
                         bot.removeListener('message', timeListener);
                         
                         // save the user inclusive preferences to the database
-                        const user = {
-                            chatId: chatId,
-                            timePeriod: timeInSeconds,  // in seconds
-                            cars: [{ make, model }]  // validated make and model
-                        };
+                        // const user = {
+                        //     chatId: chatId,
+                        //     timePeriod: timeInSeconds,  // in seconds
+                        //     cars: [{ make, model }]  // validated make and model
+                        // };
 
+                        var timePeriod = timeInSeconds;
+
+                        //console.log(user);
+                        
+                        const userTest = await createUser({ chatId, timePeriod, cars: [{ make, model }] });
+
+                        console.log(userTest);
                         // create the user in mongodb
-                        createUser(user)
-                            .then((createdUser) => {
-                                console.log('User created:', createdUser);
-                                bot.sendMessage(chatId, `Your preferences have been saved: ${JSON.stringify(createdUser)}`);
-                            })
-                            .catch((error) => {
-                                console.error('Error creating user:', error);
-                                bot.sendMessage(chatId, 'There was an error saving your preferences. Please try again later.');
-                            });
+                        // createUser(user)
+                        //     .then((createdUser) => {
+                        //         console.log('User created:', createdUser);
+                        //         bot.sendMessage(chatId, `Your preferences have been saved: ${JSON.stringify(createdUser)}`);
+                        //     })
+                        //     .catch((error) => {
+                        //         console.error('Error creating user:', error);
+                        //         bot.sendMessage(chatId, 'There was an error saving your preferences. Please try again later.');
+                        //     });
                         
                         //Call main logic here
                         mainLogicSpecificUser(chatId);
