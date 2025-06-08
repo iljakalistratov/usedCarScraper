@@ -20,7 +20,15 @@ export async function scrapeEbayKl(keyword: string) {
       const link = `${baseUrl}${$(element).find('a.ellipsis').attr('href')}`;
       const km = $(element).find('span.simpletag').eq(0).text().replace(/\n/g, '').trim();
       const year = $(element).find('span.simpletag').eq(1).text().replace(/\n/g, '').trim();
-      const imgSrc = $(element).find('#viewad-image').attr('src');
+      
+      // 1) find the img tag
+      const imgTag = $(element).find('.aditem-image img');
+      const raw = imgTag.attr('src') || '';
+      const [base] = raw.split('?rule=');
+      const imgSrc = `${base}?rule=$_59.AUTO`;
+
+
+      
 
       // console.log({ title, price, link })
       results.push({ title, price, km, year, link, imgSrc });

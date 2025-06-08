@@ -35,7 +35,8 @@ export async function scrapeWillhaben(make: string, model: string) {
 
       // 3) IMAGE: the very first <img> inside this <a>
       //    (that is the "cover" image for the listing)
-      const imgSrc = elem.find('img').first().attr('src') || '';
+      let imgSrc = elem.find('img').first().attr('src') || '';
+      imgSrc = imgSrc.replace('_hoved', '');
 
       // 4) PRICE: the <span> whose data-testid begins with "search-result-entry-price-"
       const price = elem
