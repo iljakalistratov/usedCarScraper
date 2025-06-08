@@ -3,6 +3,7 @@ import { scrapeEbayKl } from '../scraper/ebayKl';
 import { sendAds } from '../functions/telegramNotificator'
 import { findUserByChatId, CarAdModel } from '../databases/mongodb';
 import e from 'express';
+import cron from 'node-cron';
 
 
 
@@ -44,20 +45,25 @@ export async function mainLogicSpecificUser(chatID: number){
     const user = await findUserByChatId(chatID);
 
     if (!user) {
-        console.error(`User with chatID ${chatID} not found.`);
+        console.error(`User with chatID ${chatID} not found.`);     
         return;
     } else {
         console.log(`Found user with chatID ${chatID}:`, user);
     //get cars array (preferneces) from user
     const cars = user?.cars || [];
-    const time_period_in_sec = user?.timePeriod || 60;
+    const timePeriodInSec = user?.timePeriod || 60;
 
-    for (const car of cars) {
-        const allNewCarAds = await getAllNewCarAds(car.make, car.model);
-        sendAds(chatID, allNewCarAds);
-    }
+    // Schedule a cron job based on the user's time period
+    const cronExpression = `*/${Math.max(timePeriodInSec / 60, 1)} * * * *`;
 
-    setTimeout(mainLogicSpecificUser, time_period_in_sec * 1000, chatID)
+    cron.schedule(cronExpression, async () => {
+        for (const car of cars) {
+            const allNewCarAds = await getAllNewCarAds(car.make, car.model);
+            sendAds(chatID, allNewCarAds);
+        }
+    });
+
+    console.log(`Cron job scheduled for chatID ${chatID} with interval ${timePeriodInSec} seconds.`);
 
     }
 }
