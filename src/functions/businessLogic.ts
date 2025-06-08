@@ -78,7 +78,10 @@ async function getAllNewCarAds(make: string, model: string, chatId: number): Pro
     const newCarAds2 = await getNewAds(carAds2, chatId);
     const newCarAds = await getNewAds(carAds, chatId);
 
-    return newCarAds2;
+    // Combine both arrays of new car ads
+    const newCarAdsCombined = [...newCarAds, ...newCarAds2];
+
+    return newCarAdsCombined;
 }
 
 
