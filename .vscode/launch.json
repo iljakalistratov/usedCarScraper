@@ -7,6 +7,21 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "app",
+            "runtimeArgs": [
+                "-r",
+                "ts-node/register"
+            ],
+            "args": [
+                "${workspaceFolder}/src/app.ts" // path to your entry file
+            ],
+            "cwd": "${workspaceFolder}",
+            "protocol": "inspector",
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "willhaben",
             "runtimeArgs": [
                 "-r",

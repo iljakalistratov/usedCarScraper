@@ -1,6 +1,7 @@
 import TelegramBot from 'node-telegram-bot-api';
 import { CarAd } from '../models/CarAd';
 import { createUser } from '../databases/mongodb';
+import { mainLogicSpecificUser } from '../functions/businessLogic';
 import 'dotenv/config';
 
 const token = process.env.TELEGRAM_TOKEN;
@@ -32,6 +33,8 @@ export function testTgBot() {
                 }
                 bot.sendMessage(chatId, 'Thank you.\nNow please type the model of the car you want to be notified for');
                 bot.removeListener('message', makeListener);
+                
+                //toyota yaris
 
                 const modelListener = (msg: TelegramBot.Message) => {
                     const model = msg.text?.trim();
@@ -68,7 +71,9 @@ export function testTgBot() {
                                 console.error('Error creating user:', error);
                                 bot.sendMessage(chatId, 'There was an error saving your preferences. Please try again later.');
                             });
-                    
+                        
+                        //Call main logic here
+                        mainLogicSpecificUser(chatId);
                     };
 
                     bot.on('message', timeListener);
