@@ -17,6 +17,7 @@ testTgBot();
 const app = express()
 const port = 5000
 
+app.use(express.json());
 
 app.get('/', (_,res) => {
   res.status(200).send("Hello World!")
@@ -129,21 +130,22 @@ app.post("/addCarAd", async (req, res) => {
 // Create a new user
 app.post("/user", async (req, res) => {
   try {
-    const chatId = parseInt(req.query.chatId as string, 10);
-    const timePeriod = parseInt(req.query.timePeriod as string, 10);
-    let cars: Array<{ make: string; model: string }> = [];
-    if (req.query.cars) {
-      // cars should be a JSON string: '[{"make":"BMW","model":"320d"}]'
+    const { chatId, timePeriod, cars } = req.body;
+
+    if (!chatId || !timePeriod) {
+      return res.status(400).send("Missing required fields: chatId, timePeriod. Optional: cars (JSON array)");
+    }
+
+    let parsedCars: Array<{ make: string; model: string }> = [];
+    if (cars) {
       try {
-        cars = JSON.parse(req.query.cars as string);
+        parsedCars = cars;
       } catch (e) {
         return res.status(400).send("Invalid cars format. Must be JSON array.");
       }
     }
-    if (!chatId || !timePeriod) {
-      return res.status(400).send("Missing required query parameters: chatId, timePeriod. Optional: cars (JSON array)");
-    }
-    const user = await createUser({ chatId, timePeriod, cars });
+
+    const user = await createUser({ chatId, timePeriod, cars: parsedCars });
     res.status(200).send(`User created: ${JSON.stringify(user)}`);
   } catch (err) {
     res.status(500).send(`Error creating user: ${err}`);
