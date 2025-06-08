@@ -3,10 +3,12 @@ import { scrapeEbayKl } from '../scraper/ebayKl';
 import { sendAds } from '../functions/telegramNotificator'
 import { findUserByChatId, CarAdModel } from '../databases/mongodb';
 import e from 'express';
+import cron from 'node-cron';
+import { scrapeWillhaben } from '../scraper/willhaben';
 
 
 
-export async function mainLogic(){
+/* export async function mainLogic(){
 
     const fs = require('fs');
     const path = require('path');
@@ -36,7 +38,7 @@ export async function mainLogic(){
 
     setTimeout(mainLogic, timePeriod * 1000)
 
-}
+} */
 
 export async function mainLogicSpecificUser(chatID: number){
     
@@ -44,37 +46,39 @@ export async function mainLogicSpecificUser(chatID: number){
     const user = await findUserByChatId(chatID);
 
     if (!user) {
-        console.error(`User with chatID ${chatID} not found.`);
+        console.error(`User with chatID ${chatID} not found.`);     
         return;
     } else {
         console.log(`Found user with chatID ${chatID}:`, user);
     //get cars array (preferneces) from user
     const cars = user?.cars || [];
-    const time_period_in_sec = user?.timePeriod || 60;
+    const timePeriodInSec = user?.timePeriod || 60;
 
-    for (const car of cars) {
-        const allNewCarAds = await getAllNewCarAds(car.make, car.model);
-        sendAds(chatID, allNewCarAds);
-    }
+    // Schedule a cron job based on the user's time period
+    const cronExpression = `*/${Math.max(timePeriodInSec / 60, 1)} * * * *`;
 
-    setTimeout(mainLogicSpecificUser, time_period_in_sec * 1000, chatID)
+    cron.schedule(cronExpression, async () => {
+        for (const car of cars) {
+            const allNewCarAds = await getAllNewCarAds(car.make, car.model, chatID);
+            sendAds(chatID, allNewCarAds);
+        }
+    });
+
+    console.log(`Cron job scheduled for chatID ${chatID} with interval ${timePeriodInSec} seconds.`);
 
     }
 }
 
-async function getAllNewCarAds(make: string, model:string): Promise<CarAd[]> {
+async function getAllNewCarAds(make: string, model: string, chatId: number): Promise<CarAd[]> {
 
-    /* const scrapedCarAds = await scrapeAutoscout24(make, model); */
-    const scrapedCarAds2 = await scrapeEbayKl(model)
-    /* const carAds = mapToCarAds(scrapedCarAds); */
+    const scrapedCarAds = await scrapeWillhaben(make, model);
+    const scrapedCarAds2 = await scrapeEbayKl(make + ' ' + model);
+    const carAds = mapToCarAds(scrapedCarAds);
     const carAds2 = mapToCarAds(scrapedCarAds2);
-    /* const newCarAds = getNewAds(carAds); */
-    const newCarAds2 = getNewAds(carAds2);
-    /* const allNewCarAds = [...newCarAds, ...newCarAds2]; */
+    const newCarAds2 = await getNewAds(carAds2, chatId);
+    const newCarAds = await getNewAds(carAds, chatId);
 
-    //return allNewCarAds;
     return newCarAds2;
-
 }
 
 
@@ -93,7 +97,7 @@ function mapToCarAds(scrapedCarAds: any[]): CarAd[] {
 
 }
 
-async function getNewAds(carAds: CarAd[]): Promise<CarAd[]> {
+async function getNewAds(carAds: CarAd[], chatId: number): Promise<CarAd[]> {
 
     const newCarAds: CarAd[] = [];
 
@@ -101,7 +105,7 @@ async function getNewAds(carAds: CarAd[]): Promise<CarAd[]> {
         const existingAd = await CarAdModel.findOne({ link: ad.link });
         if (!existingAd) {
             newCarAds.push(ad);
-            await CarAdModel.create(ad);
+            await CarAdModel.create({ ...ad, chatId });
         }
     }
 

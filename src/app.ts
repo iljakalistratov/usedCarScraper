@@ -1,7 +1,7 @@
 import express from 'express'
 import { scrapeEbayKl } from './scraper/ebayKl'
 import { getMakeByModel } from './functions/carDatabaseFunctions'
-import { mainLogic } from './functions/businessLogic'
+import { mainLogicSpecificUser } from './functions/businessLogic'
 import { testTgBot, sendAds } from './functions/telegramNotificator'
 import {
   checkIfCarAdAlreadyInDb,
@@ -17,6 +17,7 @@ testTgBot();
 const app = express()
 const port = 5000
 
+app.use(express.json());
 
 app.get('/', (_,res) => {
   res.status(200).send("Hello World!")
@@ -50,12 +51,6 @@ app.get('/getMakebyModel/:model', async (req, res) => {
   const model = req.params.model;
   const results = await getMakeByModel(model);
   res.status(200).send(results);
-  })
-
-app.get('/testDatabase', async (_, res) => {
-  
-  await mainLogic();
-  res.status(200).send("Database updated");
   })
 
 // 4) Check if a CarAd already exists in DB for a user (use query params for link)
@@ -129,21 +124,22 @@ app.post("/addCarAd", async (req, res) => {
 // Create a new user
 app.post("/user", async (req, res) => {
   try {
-    const chatId = parseInt(req.query.chatId as string, 10);
-    const timePeriod = parseInt(req.query.timePeriod as string, 10);
-    let cars: Array<{ make: string; model: string }> = [];
-    if (req.query.cars) {
-      // cars should be a JSON string: '[{"make":"BMW","model":"320d"}]'
+    const { chatId, timePeriod, cars } = req.body;
+
+    if (!chatId || !timePeriod) {
+      return res.status(400).send("Missing required fields: chatId, timePeriod. Optional: cars (JSON array)");
+    }
+
+    let parsedCars: Array<{ make: string; model: string }> = [];
+    if (cars) {
       try {
-        cars = JSON.parse(req.query.cars as string);
+        parsedCars = cars;
       } catch (e) {
         return res.status(400).send("Invalid cars format. Must be JSON array.");
       }
     }
-    if (!chatId || !timePeriod) {
-      return res.status(400).send("Missing required query parameters: chatId, timePeriod. Optional: cars (JSON array)");
-    }
-    const user = await createUser({ chatId, timePeriod, cars });
+
+    const user = await createUser({ chatId, timePeriod, cars: parsedCars });
     res.status(200).send(`User created: ${JSON.stringify(user)}`);
   } catch (err) {
     res.status(500).send(`Error creating user: ${err}`);
@@ -161,6 +157,22 @@ app.delete("/user/:chatId", async (req, res) => {
     res.status(200).send(`User with chatId ${chatId} deleted.`);
   } catch (err) {
     res.status(500).send(`Error deleting user: ${err}`);
+  }
+});
+
+// Start logic for a specific user
+app.get("/startLogicForUser/:chatId", async (req, res) => {
+  try {
+    const chatId = parseInt(req.params.chatId, 10);
+
+    if (!chatId) {
+      return res.status(400).send("Missing or invalid chatId parameter.");
+    }
+
+    await mainLogicSpecificUser(chatId);
+    res.status(200).send(`Logic started for user with chatId ${chatId}`);
+  } catch (err) {
+    res.status(500).send(`Error starting logic for user: ${err}`);
   }
 });
 
