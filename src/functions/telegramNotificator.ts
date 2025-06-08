@@ -1,5 +1,6 @@
 import TelegramBot from 'node-telegram-bot-api';
 import { CarAd } from '../models/CarAd';
+import { createUser } from '../databases/mongodb';
 import 'dotenv/config';
 
 const token = process.env.TELEGRAM_TOKEN;
@@ -24,12 +25,20 @@ export function testTgBot() {
             bot.sendMessage(chatId, 'Please type the make of the car you want to be notified for');
 
             const makeListener = (msg: TelegramBot.Message) => {
-                console.log(msg.text);
+                const make = msg.text?.trim();
+                if (!make) {
+                    bot.sendMessage(chatId, 'Invalid input. Please type the make of the car you want to be notified for.');
+                    return;
+                }
                 bot.sendMessage(chatId, 'Thank you.\nNow please type the model of the car you want to be notified for');
                 bot.removeListener('message', makeListener);
 
                 const modelListener = (msg: TelegramBot.Message) => {
-                    console.log(msg.text);
+                    const model = msg.text?.trim();
+                    if (!model) {
+                        bot.sendMessage(chatId, 'Invalid input. Please type the model of the car you want to be notified for.');
+                        return;
+                    }
                     bot.sendMessage(chatId, 'Thank you.\nNow please type the time period in seconds you want to be notified for (min. 300 sec)');
                     bot.removeListener('message', modelListener);
 
@@ -41,6 +50,25 @@ export function testTgBot() {
                         }
                         bot.sendMessage(chatId, `Thank you. Your data will be updated every ${timeInSeconds} seconds.`);
                         bot.removeListener('message', timeListener);
+                        
+                        // save the user inclusive preferences to the database
+                        const user = {
+                            chatId: chatId,
+                            timePeriod: timeInSeconds,  // in seconds
+                            cars: [{ make, model }]  // validated make and model
+                        };
+
+                        // create the user in mongodb
+                        createUser(user)
+                            .then((createdUser) => {
+                                console.log('User created:', createdUser);
+                                bot.sendMessage(chatId, `Your preferences have been saved: ${JSON.stringify(createdUser)}`);
+                            })
+                            .catch((error) => {
+                                console.error('Error creating user:', error);
+                                bot.sendMessage(chatId, 'There was an error saving your preferences. Please try again later.');
+                            });
+                    
                     };
 
                     bot.on('message', timeListener);

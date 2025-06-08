@@ -1,6 +1,8 @@
 import { CarAd } from '../models/CarAd';
 import { scrapeEbayKl } from '../scraper/ebayKl';
 import { sendAds } from '../functions/telegramNotificator'
+import { findUserByChatId, CarAdModel } from '../databases/mongodb';
+import e from 'express';
 
 
 
@@ -37,42 +39,27 @@ export async function mainLogic(){
 }
 
 export async function mainLogicSpecificUser(chatID: number){
-    const fs = require('fs');
-    const path = require('path');
-    const preferences = JSON.parse(fs.readFileSync(path.join(__dirname, '../databases/preferences.json')));
+    
+    //get user by chatID from mongodb
+    const user = await findUserByChatId(chatID);
 
-    //search for obejct with given chatID in preferences
-    //if object found, get time_period_in_sec and cars
-    //if not found create new object with chatID and time_period_in_sec and cars
-    const userPreferences = preferences.find((preference: { chat_id: number; }) => preference.chat_id === chatID);
+    if (!user) {
+        console.error(`User with chatID ${chatID} not found.`);
+        return;
+    } else {
+        console.log(`Found user with chatID ${chatID}:`, user);
+    //get cars array (preferneces) from user
+    const cars = user?.cars || [];
+    const time_period_in_sec = user?.timePeriod || 60;
 
-    if (userPreferences) {
-        const timePeriod = userPreferences.time_period_in_sec;
-        const cars = userPreferences.cars;
-
-        for (const car of cars) {
-            const allNewCarAds = await getAllNewCarAds(car.make, car.model);
-            sendAds(chatID, allNewCarAds);
-        }
-
-        setTimeout(mainLogicSpecificUser, timePeriod * 1000, chatID)
-    }
-    else {
-        
-        const newPreference = {
-            chat_id: chatID,
-            time_period_in_sec: 60,
-            cars: [
-            ]
-        }
-
-        preferences.push(newPreference);
-        const json = JSON.stringify(preferences, null, 2);
-        fs.writeFileSync(path.join(__dirname, '../databases/preferences.json'), json);
-
-        setTimeout(mainLogicSpecificUser, 60 * 1000, chatID)
+    for (const car of cars) {
+        const allNewCarAds = await getAllNewCarAds(car.make, car.model);
+        sendAds(chatID, allNewCarAds);
     }
 
+    setTimeout(mainLogicSpecificUser, time_period_in_sec * 1000, chatID)
+
+    }
 }
 
 async function getAllNewCarAds(make: string, model:string): Promise<CarAd[]> {
@@ -106,35 +93,19 @@ function mapToCarAds(scrapedCarAds: any[]): CarAd[] {
 
 }
 
-function getNewAds(carAds: CarAd[]): CarAd[] {
+async function getNewAds(carAds: CarAd[]): Promise<CarAd[]> {
 
-    const fs = require('fs');
-    const path = require('path');
+    const newCarAds: CarAd[] = [];
 
-    const filePath = path.join(__dirname, '../databases/carAdDatabase.json');
-
-    let jsonData: CarAd[] = [];
-    try {
-      const fileData = fs.readFileSync(filePath, 'utf8');
-      jsonData = JSON.parse(fileData);
-    } catch (err) {
-      // ignore error if file does not exist yet
+    for (const ad of carAds) {
+        const existingAd = await CarAdModel.findOne({ link: ad.link });
+        if (!existingAd) {
+            newCarAds.push(ad);
+            await CarAdModel.create(ad);
+        }
     }
-  
-    const existingLinks = new Set(jsonData.map(ad => ad.link));
-    const newCarAds = carAds.filter(ad => !existingLinks.has(ad.link));
-    if (newCarAds.length === 0) {
-      // nothing to add, return early
-      return [];
-    }
-    else {
-        jsonData = [...jsonData, ...newCarAds];
-        const json = JSON.stringify(jsonData, null, 2);
-        fs.writeFileSync(filePath, json);
 
-        return newCarAds;
-    }
-  
+    return newCarAds;
 }
 
 

@@ -77,6 +77,17 @@ export async function deleteUser(chatId: number): Promise<void> {
   }
 }
 
+// Function to find a user by chatId
+export async function findUserByChatId(chatId: number): Promise<User | null> {
+  try {
+    const user = await UserModel.findOne({ chatId });
+    return user;
+  } catch (error) {
+    const err = error as Error;
+    throw new Error(`Failed to find user: ${err.message}`);
+  }
+}
+
 
 
 //addCar function, only possible if car array of this User is < 3
