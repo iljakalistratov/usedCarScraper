@@ -47,7 +47,7 @@ export async function testTgBot() {
 
                     const timeListener = async (msg: TelegramBot.Message) => {
                         const timeInSeconds = parseInt(msg.text || '', 10);
-                        if (isNaN(timeInSeconds) || timeInSeconds < 300) {
+                        if (isNaN(timeInSeconds) || timeInSeconds < 30) {
                             bot.sendMessage(chatId, 'Invalid time period. Please enter a number greater than or equal to 300.');
                             return;
                         }

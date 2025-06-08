@@ -40,42 +40,5 @@ if (!db.getCollectionNames().includes('carAdListings')) {
 }
 
 if (!db.getCollectionNames().includes('users')) {
-  db.createCollection('users', {
-    validator: {
-      $jsonSchema: {
-        bsonType: "object",
-        required: ["chatId", "timePeriod", "cars"],
-        properties: {
-          chatId: {
-            bsonType: "int",
-            description: "Chat ID (Pflichtfeld, Typ: Integer)"
-          },
-          timePeriod: {
-            bsonType: "int",
-            description: "Zeitraum (Pflichtfeld, Typ: Integer)"
-          },
-          cars: {
-            bsonType: "array",
-            description: "Liste der Fahrzeuge (Pflichtfeld, Typ: Array)",
-            items: {
-              bsonType: "object",
-              required: ["make", "model"],
-              properties: {
-                make: {
-                  bsonType: "string",
-                  description: "Marke des Fahrzeugs (Pflichtfeld, Typ: String)"
-                },
-                model: {
-                  bsonType: "string",
-                  description: "Modell des Fahrzeugs (Pflichtfeld, Typ: String)"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    validationLevel: "strict",
-    validationAction: "error"
-  });
+  db.createCollection('users')
 }

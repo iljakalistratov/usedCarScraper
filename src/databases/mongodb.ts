@@ -9,7 +9,8 @@ const UserSchema = new Schema({
   timePeriod: { type: Number, required: true },
   cars: [{
     make: { type: String, required: true },
-    model: { type: String, required: true }
+    model: { type: String, required: true },
+    _id: { type: mongoose.Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId() }
   }]
 });
 
@@ -56,16 +57,26 @@ export async function createUser(userData: {
   cars: Array<{ make: string; model: string }>;
 }): Promise<User> {
   try {
-    const user = new UserModel(userData);
-    console.log("HERE USER CREATE METHODE:");
-    console.log(userData);
-    console.log(user);
+    // Sanitize the cars array to ensure it only contains make, model, and valid _id fields
+    const sanitizedCars = userData.cars.map(({ make, model }) => ({
+      make,
+      model,
+      _id: new mongoose.Types.ObjectId()
+    }));
+
+    const user = new UserModel({
+      chatId: userData.chatId,
+      timePeriod: userData.timePeriod,
+      cars: sanitizedCars,
+    });
+
+    console.log("Attempting to create user with sanitized data:", user);
+
     const savedUser = await user.save();
-    console.log(savedUser);
     return savedUser;
   } catch (error) {
-    console.log("Leider ein error beim create mit diesem user: " + userData);
     const err = error as Error;
+    console.error("Error details:", error);
     throw new Error(`Failed to create user: ${err.message}`);
   }
 }
