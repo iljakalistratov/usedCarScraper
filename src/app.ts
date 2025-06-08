@@ -1,7 +1,7 @@
 import express from 'express'
 import { scrapeEbayKl } from './scraper/ebayKl'
 import { getMakeByModel } from './functions/carDatabaseFunctions'
-import { mainLogic } from './functions/businessLogic'
+import { mainLogicSpecificUser } from './functions/businessLogic'
 import { testTgBot, sendAds } from './functions/telegramNotificator'
 import {
   checkIfCarAdAlreadyInDb,
@@ -51,12 +51,6 @@ app.get('/getMakebyModel/:model', async (req, res) => {
   const model = req.params.model;
   const results = await getMakeByModel(model);
   res.status(200).send(results);
-  })
-
-app.get('/testDatabase', async (_, res) => {
-  
-  await mainLogic();
-  res.status(200).send("Database updated");
   })
 
 // 4) Check if a CarAd already exists in DB for a user (use query params for link)
@@ -163,6 +157,22 @@ app.delete("/user/:chatId", async (req, res) => {
     res.status(200).send(`User with chatId ${chatId} deleted.`);
   } catch (err) {
     res.status(500).send(`Error deleting user: ${err}`);
+  }
+});
+
+// Start logic for a specific user
+app.get("/startLogicForUser/:chatId", async (req, res) => {
+  try {
+    const chatId = parseInt(req.params.chatId, 10);
+
+    if (!chatId) {
+      return res.status(400).send("Missing or invalid chatId parameter.");
+    }
+
+    await mainLogicSpecificUser(chatId);
+    res.status(200).send(`Logic started for user with chatId ${chatId}`);
+  } catch (err) {
+    res.status(500).send(`Error starting logic for user: ${err}`);
   }
 });
 

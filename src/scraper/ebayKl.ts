@@ -36,4 +36,4 @@ export async function scrapeEbayKl(keyword: string) {
   }
 }
 
-scrapeEbayKl("audi-a4");
+//scrapeEbayKl("audi-a4");
