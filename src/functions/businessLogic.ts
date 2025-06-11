@@ -101,8 +101,12 @@ function mapToCarAds(scrapedCarAds: any[]): CarAd[] {
 }
 
 async function getNewAds(carAds: CarAd[], chatId: number): Promise<CarAd[]> {
+    const newCarAds: CarAd[] = [];  
+    const emptyCarAddsArray: CarAd[] = []; 
 
-    const newCarAds: CarAd[] = [];
+    const count = await CarAdModel.countDocuments({ chatId });
+    const isDBEmpty = count === 0;
+
 
     for (const ad of carAds) {
         const existingAd = await CarAdModel.findOne({ link: ad.link });
@@ -112,6 +116,10 @@ async function getNewAds(carAds: CarAd[], chatId: number): Promise<CarAd[]> {
         }
     }
 
+    if(isDBEmpty) {
+        return emptyCarAddsArray;
+    }
+        
     return newCarAds;
 }
 
