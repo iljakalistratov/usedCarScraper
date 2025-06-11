@@ -75,13 +75,14 @@ async function getAllNewCarAds(make: string, model: string, chatId: number): Pro
     const scrapedCarAds2 = await scrapeEbayKl(make + ' ' + model);
     const carAds = mapToCarAds(scrapedCarAds);
     const carAds2 = mapToCarAds(scrapedCarAds2);
-    const newCarAds2 = await getNewAds(carAds2, chatId);
-    const newCarAds = await getNewAds(carAds, chatId);
+    const carAdsCombined = [...carAds, ...carAds2];
+    const newCarAds = await getNewAds(carAdsCombined, chatId);
+    //const newCarAds = await getNewAds(carAds, chatId);
 
     // Combine both arrays of new car ads
-    const newCarAdsCombined = [...newCarAds, ...newCarAds2];
+    //const newCarAdsCombined = [...newCarAds, ...newCarAds2];
 
-    return newCarAdsCombined;
+    return newCarAds;
 }
 
 
